@@ -1,6 +1,10 @@
 #include <sys/types.h>
+#include <stdio.h>
 #include <psxgpu.h>
 #include <psxgte.h>
+#include <psxpad.h>
+#include <psxapi.h>
+#include <psxetc.h>
 #include <inline_c.h>
 
 #include "options.h"

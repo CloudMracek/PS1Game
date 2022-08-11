@@ -1,4 +1,0 @@
-/home/jracek/code/engine/build/CMakeFiles/bandwidth.dir
-/home/jracek/code/engine/build/CMakeFiles/iso.dir
-/home/jracek/code/engine/build/CMakeFiles/edit_cache.dir
-/home/jracek/code/engine/build/CMakeFiles/rebuild_cache.dir

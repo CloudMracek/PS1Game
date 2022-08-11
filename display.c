@@ -118,69 +118,108 @@ void end() {
 }
 
 void sortObject(OBJECT *obj) {
-  int i, p;
-  POLY_FT4 *pol4;
-
-  MATRIX omtx, lmtx;
-
-  RotMatrix(&rot, &omtx);
-  TransMatrix(&omtx, &pos);
-
-  MulMatrix0(&light_mtx, &omtx, &lmtx);
-
-  gte_SetLightMatrix(&lmtx);
-
-  CompMatrixLV(&mtx, &omtx, &omtx);
-
-  PushMatrix();
-
-  gte_SetRotMatrix(&omtx);
-  gte_SetTransMatrix(&omtx);
-
-  pol4 = (POLY_FT4 *)db_nextpri;
-
-  for (i = 0; i < obj->faces_num; i++) {
-
-    
-    gte_ldv3(&obj->vertex_data[obj->vertex_indices[i].v0],
-             &obj->vertex_data[obj->vertex_indices[i].v1],
-             &obj->vertex_data[obj->vertex_indices[i].v2]);
-
-    gte_rtpt();
-    gte_nclip();
-    gte_stopz(&p);
-
-    if (p < 0)
-      continue;
-
-    gte_avsz3();
-    gte_stotz(&p);
-
-    if (((p >> 2) <= 0) || ((p >> 2) >= OT_LEN))
-      continue;
-
-    setPolyF4(pol4);
-
-    gte_stsxy0(&pol4->x0);
-    gte_stsxy1(&pol4->x1);
-    gte_stsxy2(&pol4->x2);
-
-    gte_ldv0(&obj->vertex_data[obj->vertex_indices[i].v3]);
-    gte_rtps();
-    gte_stsxy(&pol4->x3);
-
-    gte_ldrgb(&pol4->r0);
-    gte_ldv0(&obj->normal_data[obj->normal_indices[i]]);
-    gte_ncs();
-    gte_strgb(&pol4->r0);
-    gte_avsz4();
-    gte_stotz(&p);
-    FntPrint(-1, "Lol");
-    addPrim(db[db_active].ot + (p >> 2), pol4);
-
-    pol4++;
-  }
-
-  db_nextpri = (char *)pol4;
-  PopMatrix();
+int i,p;
+	POLY_F4 *pol4;
+	
+	// Object and light matrix for object
+	MATRIX omtx,lmtx;
+	
+	// Set object rotation and position
+	RotMatrix( &rot, &omtx );
+	TransMatrix( &omtx, &pos );
+	
+	// Multiply light matrix to object matrix
+	MulMatrix0( &light_mtx, &omtx, &lmtx );
+	
+	// Set result to GTE light matrix
+	gte_SetLightMatrix( &lmtx );
+	
+	// Composite coordinate matrix transform, so object will be rotated and
+	// positioned relative to camera matrix (mtx), so it'll appear as
+	// world-space relative.
+	CompMatrixLV( &mtx, &omtx, &omtx );
+	
+	// Save matrix
+	PushMatrix();
+	
+	// Set matrices
+	gte_SetRotMatrix( &omtx );
+	gte_SetTransMatrix( &omtx );
+	
+	// Sort the cube
+	pol4 = (POLY_F4*)db_nextpri;
+	
+	for( i=0; i<obj->faces_num; i++ ) {
+		
+		// Load the first 3 vertices of a quad to the GTE 
+		gte_ldv3( 
+			obj->vertex_data[obj->vertex_indices[i].v0], 
+			obj->vertex_data[obj->vertex_indices[i].v1], 
+			obj->vertex_data[obj->vertex_indices[i].v2] );
+			
+		// Rotation, Translation and Perspective Triple
+		gte_rtpt();
+		
+		// Compute normal clip for backface culling
+		gte_nclip();
+		
+		// Get result
+		gte_stopz( &p );
+		
+		// Skip this face if backfaced
+		if( p < 0 )
+			continue;
+		
+		// Calculate average Z for depth sorting
+		gte_avsz3();
+		gte_stotz( &p );
+		
+		// Skip if clipping off
+		// (the shift right operator is to scale the depth precision)
+		if( ((p>>2) <= 0) || ((p>>2) >= OT_LEN) )
+			continue;
+		
+		// Initialize a quad primitive
+		setPolyF4( pol4 );
+		
+		// Set the projected vertices to the primitive
+		gte_stsxy0( &pol4->x0 );
+		gte_stsxy1( &pol4->x1 );
+		gte_stsxy2( &pol4->x2 );
+		
+		// Compute the last vertex and set the result
+		gte_ldv0( obj->vertex_data[obj->vertex_indices[i].v0]);
+		gte_rtps();
+		gte_stsxy( &pol4->x3 );
+		
+		// Load primitive color even though gte_ncs() doesn't use it.
+		// This is so the GTE will output a color result with the
+		// correct primitive code.
+		gte_ldrgb( &pol4->r0 );
+		
+		// Load the face normal
+		gte_ldv0( obj->normal_data[obj->normal_indices[i]] );
+		
+		// Normal Color Single
+		gte_ncs();
+		
+		// Store result to the primitive
+		gte_strgb( &pol4->r0 );
+		
+		gte_avsz4();
+		gte_stotz( &p );
+		
+		// Sort primitive to the ordering table
+		addPrim( db[db_active].ot+(p>>2), pol4 );
+		
+		// Advance to make another primitive
+		pol4++;
+		
+	}
+	
+	// Update nextpri
+	db_nextpri = (char*)pol4;
+	
+	// Restore matrix
+	PopMatrix();
 }
