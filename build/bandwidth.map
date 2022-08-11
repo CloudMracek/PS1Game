@@ -1,0 +1,122 @@
+__text_start T ffffffff80010000 	/home/jracek/code/engine/main.c:20
+main T ffffffff80010000 a4	/home/jracek/code/engine/main.c:20
+initDisplay T ffffffff800100a4 1e8	/home/jracek/code/engine/display.c:38
+display T ffffffff8001028c ec	/home/jracek/code/engine/display.c:84
+begin T ffffffff80010378 cc	/home/jracek/code/engine/display.c:101
+end T ffffffff80010444 1c	/home/jracek/code/engine/display.c:115
+sortObject T ffffffff80010460 310	/home/jracek/code/engine/display.c:120
+ClearOTagR T ffffffff80010770 
+DrawOTag T ffffffff8001079c 
+DrawSync T ffffffff800107f0 
+FntLoad T ffffffff8001088c 158
+FntOpen T ffffffff800109e4 f0
+FntPrint T ffffffff80010ad4 a4
+FntFlush T ffffffff80010b78 2d0
+GetTimInfo T ffffffff80010e48 9c
+LoadImage T ffffffff80010ee4 
+PutDispEnv T ffffffff80010f88 
+PutDrawEnv T ffffffff80011160 
+ReadGPUstat T ffffffff800112d4 
+ResetGraph T ffffffff800112e4 
+VSync T ffffffff80011464 
+_vsync_sub t ffffffff8001156c 
+_vsync_irq_callback t ffffffff80011600 
+SetDefDispEnv T ffffffff80011658 34
+SetDefDrawEnv T ffffffff8001168c 38
+SetDispMask T ffffffff800116c4 
+ApplyMatrixLV T ffffffff800116e4 
+CompMatrixLV T ffffffff80011744 
+InitGeom T ffffffff80011864 
+RotMatrix T ffffffff800118cc 13c
+TransMatrix T ffffffff80011a08 20
+MulMatrix0 T ffffffff80011a28 
+PushMatrix T ffffffff80011b00 
+PopMatrix T ffffffff80011b4c 
+isin T ffffffff80011b9c 64
+icos T ffffffff80011c00 64
+InterruptCallback T ffffffff80011c64 
+_global_isr t ffffffff80011cc0 
+RestartCallback T ffffffff80011d3c 
+_96_remove T ffffffff80011dd0 
+puts T ffffffff80011ddc 
+printf T ffffffff80011de8 
+ReturnFromException T ffffffff80011df4 
+SetCustomExitFromException T ffffffff80011e00 
+ChangeClearPAD T ffffffff80011e0c 
+ChangeClearRCnt T ffffffff80011e18 
+EnterCriticalSection T ffffffff80011e24 
+ExitCriticalSection T ffffffff80011e34 
+GetBSSend T ffffffff80011e44 
+InitHeap W ffffffff80011e54 
+SetHeapSize W ffffffff80011e7c 
+malloc W ffffffff80011e90 
+calloc W ffffffff80011fb4 
+free W ffffffff80011ff0 
+_start T ffffffff80012028 238
+toupper T ffffffff80012260 1c
+strncpy T ffffffff8001227c 4c
+strlen T ffffffff800122c8 3c
+strstr T ffffffff80012304 fc
+strtok T ffffffff80012400 114
+get_arg_in_size T ffffffff80012514 c8
+vsnprintf T ffffffff800125dc 1a44
+memcmp T ffffffff80014020 
+memset T ffffffff80014054 
+__CTOR_LIST__ D ffffffff80014bc0 
+__CTOR_END__ D ffffffff80014bc8 
+__DTOR_LIST__ D ffffffff80014bd0 
+__DTOR_END__ D ffffffff80014bd8 
+light_mtx D ffffffff80014bd8 20
+color_mtx D ffffffff80014bf8 20
+cube_uv D ffffffff80014c18 a0
+cube_normal_indices D ffffffff80014cb8 18
+cube_uv_indices D ffffffff80014cd0 30
+cube_vertex_indices D ffffffff80014d00 30
+cube_norms D ffffffff80014d30 30
+cube_verts D ffffffff80014d60 40
+_vsync_rcnt d ffffffff80014da0 
+_vsync_lasthblank d ffffffff80014da4 
+vsynctimeout_msg d ffffffff80014da8 
+resetgraph_msg d ffffffff80014db8 
+enableint_msg d ffffffff80014dd6 
+cbhooks_msg d ffffffff80014df6 
+abouttoen_msg d ffffffff80014e1b 
+sr_msg d ffffffff80014e41 
+psxgpu_credits D ffffffff80014e53 
+dbugfont D ffffffff80014ea0 840
+_matrix_stack d ffffffff800156e0 
+_irq_func_table D ffffffff80015700 
+_custom_exit D ffffffff80015730 
+cube_num_faces D ffffffff80015760 4
+__bss_start B ffffffff80015764 
+trot B ffffffff80015764 8
+rot B ffffffff8001576c 8
+screen_clip B ffffffff80015774 8
+db_nextpri B ffffffff8001577c 4
+db_active B ffffffff80015780 4
+_gpu_current_field B ffffffff80015784 4
+_hooks_installed B ffffffff80015788 4
+_vsync_cb_func B ffffffff8001578c 4
+_gpu_standard B ffffffff80015790 4
+_malloc_addr B ffffffff80015794 4
+_malloc_size B ffffffff80015798 4
+obj1 B ffffffff800157a0 30
+mtx B ffffffff800157d0 20
+tpos B ffffffff800157f0 c
+cam_rot B ffffffff800157fc c
+cam_pos B ffffffff80015808 c
+pos B ffffffff80015814 c
+db B ffffffff80015820 80e0
+_gp d ffffffff8001d750 
+_font_clut B ffffffff8001d900 2
+_font_tpage B ffffffff8001d902 2
+_nstreams b ffffffff8001d904 4
+_stream b ffffffff8001d908 e0
+_arg_string_buffer b ffffffff8001d9e8 84
+_argv_buffer b ffffffff8001da6c 40
+__argv B ffffffff8001daac 4
+__argc B ffffffff8001dab0 4
+_strtok_endpos b ffffffff8001dab4 4
+_strtok_curpos b ffffffff8001dab8 4
+_isr_stack B ffffffff8001dac0 1004
+_end B ffffffff8001eac4 
