@@ -24,6 +24,7 @@ typedef struct {
 typedef struct {
     VECTOR pos;
     SVECTOR rot;
+    TIM_IMAGE tim;
     int faces_num;
     SVECTOR *vertex_data;
     SVECTOR *normal_data;

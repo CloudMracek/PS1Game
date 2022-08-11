@@ -11,12 +11,15 @@ project(
 file(GLOB MODELS models/*.c)
 file(GLOB TEXTURES textures/*.tim)
 
-psn00bsdk_add_executable(bandwidth STATIC main.c display.c ${MODELS})
+psn00bsdk_add_executable(bandwidth STATIC main.c display.c textures.c ${MODELS})
 
-foreach(TEXTURE ${TEXTURES})
-	string(REGEX REPLACE "\\.[^.]*$" "" TEXTURE_NAME ${TEXTURE})
-	psn00bsdk_target_incbin(bandwidth PRIVATE ${TEXTURE_NAME} ${TEXTURE})
-endforeach()
+#foreach(TEXTURE ${TEXTURES})
+#	get_filename_component(BARENAME ${TEXTURE} NAME)
+#	string(REGEX REPLACE "\\.[^.]*$" "" TEXTURE_NAME ${BARENAME})
+#	psn00bsdk_target_incbin(bandwidth PRIVATE ${TEXTURE_NAME} ${TEXTURE})
+#endforeach()
+
+psn00bsdk_target_incbin(bandwidth PRIVATE bandwidth_face textures/bandwidth_face.tim)
 
 psn00bsdk_add_cd_image(
 	iso      # Target name
