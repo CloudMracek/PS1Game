@@ -6,6 +6,7 @@
 #include "textures.h"
 
 OBJECT obj1;
+OBJECT floor_obj;
 
 extern int cube_num_faces;
 
@@ -20,19 +21,30 @@ extern INDEX cube_vertex_indices[];
 extern int cube_normal_indices[];
 extern INDEX cube_uv_indices[];
 
+extern int floor_num_faces;
+
+extern u_long cobble[];
+TIM_IMAGE floor_tim;
+
+extern SVECTOR floor_verts[];
+extern SVECTOR floor_norms[];
+extern SVECTOR floor_uv[];
+
+extern INDEX floor_vertex_indices[];
+extern int floor_normal_indices[];
+extern INDEX floor_uv_indices[];
+
+
 int main() {
 
   initDisplay();
 
-  GetTimInfo(bandwidth_face, &tim);
-
-  LoadImage(tim.prect, tim.paddr);
-  DrawSync(0);
-
-  LoadImage(tim.crect, tim.caddr);
-  DrawSync(0);
+  loadTexture(bandwidth_face, &tim);
+  loadTexture(cobble, &floor_tim);
 
   VECTOR pos = {0, 0, 400};
+  SVECTOR floor_rot = {-1024, 0, 0};
+
   SVECTOR rot = {0, 0, 0};
 
   obj1.pos = pos;
@@ -49,11 +61,26 @@ int main() {
   obj1.normal_indices = cube_normal_indices;
   obj1.uv_indices = cube_uv_indices;
 
+  floor_obj.pos = pos;
+  floor_obj.rot = floor_rot;
+
+  floor_obj.faces_num = floor_num_faces;
+  floor_obj.tim = floor_tim;
+
+  floor_obj.vertex_data = floor_verts;
+  floor_obj.normal_data = floor_norms;
+  floor_obj.uv_data = floor_uv;
+
+  floor_obj.vertex_indices = floor_vertex_indices;
+  floor_obj.normal_indices = floor_normal_indices;
+  floor_obj.uv_indices = floor_uv_indices;
+
   int i = 0;
 
   while (1) {
     begin();
     sortObject(&obj1);
+    sortObject(&floor_obj);
     end();
 
     rot.vx = i;

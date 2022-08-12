@@ -174,13 +174,13 @@ void sortObject(OBJECT *obj) {
     gte_ncs();
     gte_strgb(&pol4->r0);
 
-    pol4->tpage = getTPage(obj->tim.mode&0x8, 0, obj->tim.prect->x, obj->tim.prect->y);
+    pol4->tpage = getTPage(obj->tim.mode, 0, obj->tim.prect->x, obj->tim.prect->y);
     setClut(pol4, obj->tim.crect->x, obj->tim.crect->y);
     setUV4(pol4, 
-            obj->uv_data[obj->uv_indices[i].v0].vx, 128 - obj->uv_data[obj->uv_indices[i].v0].vy,
-            obj->uv_data[obj->uv_indices[i].v1].vx, 128 - obj->uv_data[obj->uv_indices[i].v1].vy,
-            obj->uv_data[obj->uv_indices[i].v2].vx, 128 - obj->uv_data[obj->uv_indices[i].v2].vy,
-            obj->uv_data[obj->uv_indices[i].v3].vx, 128 - obj->uv_data[obj->uv_indices[i].v3].vy
+            128 - obj->uv_data[obj->uv_indices[i].v0].vx, obj->uv_data[obj->uv_indices[i].v0].vy,
+            128 - obj->uv_data[obj->uv_indices[i].v1].vx, obj->uv_data[obj->uv_indices[i].v1].vy,
+            128 - obj->uv_data[obj->uv_indices[i].v2].vx, obj->uv_data[obj->uv_indices[i].v2].vy,
+            128 - obj->uv_data[obj->uv_indices[i].v3].vx, obj->uv_data[obj->uv_indices[i].v3].vy
             );
 
     gte_avsz4();
