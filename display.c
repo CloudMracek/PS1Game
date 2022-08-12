@@ -307,11 +307,11 @@ void sortObject(OBJECT *obj) {
         getTPage(obj->tim.mode, 0, obj->tim.prect->x, obj->tim.prect->y);
     setClut(pol4, obj->tim.crect->x, obj->tim.crect->y);
     setUV4(pol4,
-          obj->uv_data[obj->uv_indices[i].v0].vx, obj->uv_data[obj->uv_indices[i].v0].vy,
-          obj->uv_data[obj->uv_indices[i].v1].vx, obj->uv_data[obj->uv_indices[i].v1].vy,
-          obj->uv_data[obj->uv_indices[i].v2].vx, obj->uv_data[obj->uv_indices[i].v2].vy,
-          obj->uv_data[obj->uv_indices[i].v3].vx, obj->uv_data[obj->uv_indices[i].v3].vy);
-    setRGB0( pol4, 128, 128, 128 );
+          obj->uv_data[obj->uv_indices[i].v0].vx, obj->texture_size-1-obj->uv_data[obj->uv_indices[i].v0].vy,
+          obj->uv_data[obj->uv_indices[i].v1].vx, obj->texture_size-1-obj->uv_data[obj->uv_indices[i].v1].vy,
+          obj->uv_data[obj->uv_indices[i].v2].vx, obj->texture_size-1-obj->uv_data[obj->uv_indices[i].v2].vy,
+          obj->uv_data[obj->uv_indices[i].v3].vx, obj->texture_size-1-obj->uv_data[obj->uv_indices[i].v3].vy);
+    setRGB0( pol4, obj->brighness, obj->brighness, obj->brighness );
     gte_avsz4();
     gte_stotz(&p);
     addPrim(db[db_active].ot + (p >> 2), pol4);

@@ -26,6 +26,8 @@ typedef struct {
     SVECTOR rot;
     TIM_IMAGE tim;
     int faces_num;
+    int texture_size;
+    int brighness;
     SVECTOR *vertex_data;
     SVECTOR *normal_data;
     SVECTOR *uv_data;
