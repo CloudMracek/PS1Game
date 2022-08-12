@@ -42,10 +42,11 @@ int main() {
   loadTexture(bandwidth_face, &tim);
   loadTexture(cobble, &floor_tim);
 
-  VECTOR pos = {0, 0, 400};
+  VECTOR floor_pos = {0, 0, 400};
   SVECTOR floor_rot = {-1024, 0, 0};
 
   SVECTOR rot = {0, 0, 0};
+  VECTOR pos = {0,-200,400};
 
   obj1.pos = pos;
   obj1.rot = rot;
@@ -61,7 +62,7 @@ int main() {
   obj1.normal_indices = cube_normal_indices;
   obj1.uv_indices = cube_uv_indices;
 
-  floor_obj.pos = pos;
+  floor_obj.pos = floor_pos;
   floor_obj.rot = floor_rot;
 
   floor_obj.faces_num = floor_num_faces;
@@ -85,7 +86,7 @@ int main() {
 
     rot.vx = i;
     rot.vy = i;
-    obj1.rot = rot;
+    //obj1.rot = rot;
 
     if (i > 4096) {
       i = 0;

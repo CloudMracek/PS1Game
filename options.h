@@ -3,7 +3,7 @@ changing common variables like screen resolution */
 
 #define LOAD_FONT
 
-#define OT_LEN			2048
+#define OT_LEN			4096
 #define PACKET_LEN		8192
 
 #define SCREEN_XRES		320
