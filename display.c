@@ -306,14 +306,11 @@ void sortObject(OBJECT *obj) {
     pol4->tpage =
         getTPage(obj->tim.mode, 0, obj->tim.prect->x, obj->tim.prect->y);
     setClut(pol4, obj->tim.crect->x, obj->tim.crect->y);
-    setUV4(pol4, 127 - obj->uv_data[obj->uv_indices[i].v0].vx,
-           obj->uv_data[obj->uv_indices[i].v0].vy,
-           127 - obj->uv_data[obj->uv_indices[i].v1].vx,
-           obj->uv_data[obj->uv_indices[i].v1].vy,
-           127 - obj->uv_data[obj->uv_indices[i].v2].vx,
-           obj->uv_data[obj->uv_indices[i].v2].vy,
-           127 - obj->uv_data[obj->uv_indices[i].v3].vx,
-           obj->uv_data[obj->uv_indices[i].v3].vy);
+    setUV4(pol4,
+          obj->uv_data[obj->uv_indices[i].v0].vx, obj->uv_data[obj->uv_indices[i].v0].vy,
+          obj->uv_data[obj->uv_indices[i].v1].vx, obj->uv_data[obj->uv_indices[i].v1].vy,
+          obj->uv_data[obj->uv_indices[i].v2].vx, obj->uv_data[obj->uv_indices[i].v2].vy,
+          obj->uv_data[obj->uv_indices[i].v3].vx, obj->uv_data[obj->uv_indices[i].v3].vy);
     setRGB0( pol4, 128, 128, 128 );
     gte_avsz4();
     gte_stotz(&p);
