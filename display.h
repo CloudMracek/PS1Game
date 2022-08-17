@@ -1,19 +1,14 @@
-#include <sys/types.h>
-#include <stdio.h>
+#pragma once
+#include <stdint.h>
 #include <psxgpu.h>
 #include <psxgte.h>
-#include <psxpad.h>
-#include <psxapi.h>
-#include <psxetc.h>
-#include <inline_c.h>
-
 #include "options.h"
 
 // ---- Structs for rendering ----
 typedef struct {
     DISPENV disp;
     DRAWENV draw;
-    u_long ot[OT_LEN];
+    uint32_t *ot[OT_LEN];
     char p[PACKET_LEN];
 } DB;
 
@@ -36,9 +31,9 @@ typedef struct {
     int *normal_indices;
 } OBJECT;
 
-void initDisplay();
+void initDisplay(void);
 
-void begin();
-void end();
+void begin(void);
+void end(void);
 
-void sortObject(OBJECT* obj);
+void sortObject(OBJECT *obj);

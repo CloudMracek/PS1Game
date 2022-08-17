@@ -11,7 +11,14 @@ project(
 file(GLOB MODELS models/*.c)
 file(GLOB TEXTURES textures/*.tim)
 
-psn00bsdk_add_executable(bandwidth STATIC main.c display.c textures.c ${MODELS})
+psn00bsdk_add_executable(
+	bandwidth STATIC
+	main.c
+	display.c
+	textures.c
+	input.c
+	${MODELS}
+)
 
 foreach(TEXTURE ${TEXTURES})
 	get_filename_component(BARENAME ${TEXTURE} NAME)

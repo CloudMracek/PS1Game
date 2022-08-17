@@ -1,4 +1,5 @@
+#pragma once
+#include <stdint.h>
 #include <psxgpu.h>
-#include <psxgte.h>
 
-void loadTexture(u_long *tim, TIM_IMAGE *tparam);
+void loadTexture(const uint32_t *tim, TIM_IMAGE *tparam);
